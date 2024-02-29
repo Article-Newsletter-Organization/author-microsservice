@@ -2,12 +2,14 @@ package com.articlenewsletter.author.services;
 
 import com.articlenewsletter.author.models.AuthorModel;
 import com.articlenewsletter.author.repositories.AuthorRepository;
+
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AuthorService {
@@ -24,7 +26,7 @@ public class AuthorService {
         return authorRepository.findAll();
     }
 
-    public Optional<AuthorModel> getById(Long id) {
+    public Optional<AuthorModel> getById(UUID id) {
         return authorRepository.findById(id);
     }
 

@@ -3,20 +3,21 @@ package com.articlenewsletter.author.models;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_authors")
 public class AuthorModel implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String name;
     private String email;
     private String bio;
-    private String userId;
+    private UUID userId;
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -32,11 +33,11 @@ public class AuthorModel implements Serializable {
         this.bio = bio;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -52,7 +53,7 @@ public class AuthorModel implements Serializable {
         return bio;
     }
     
-    public String getUserId() {
+    public UUID getUserId() {
         return userId;
     }
     

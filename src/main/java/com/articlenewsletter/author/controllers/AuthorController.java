@@ -4,6 +4,7 @@ import com.articlenewsletter.author.dtos.CreateAuthorDto;
 import com.articlenewsletter.author.dtos.UpdateAuthorDto;
 import com.articlenewsletter.author.models.AuthorModel;
 import com.articlenewsletter.author.services.AuthorService;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class AuthorController {
@@ -26,7 +28,7 @@ public class AuthorController {
     }
 
     @GetMapping("/author/{id}")
-    public ResponseEntity<Object> getAuthorById(@PathVariable Long id) {
+    public ResponseEntity<Object> getAuthorById(@PathVariable UUID id) {
         Optional<AuthorModel> searchedAuthor = authorService.getById(id);
         if(searchedAuthor.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Author not found");
@@ -44,7 +46,7 @@ public class AuthorController {
     }
 
     @PutMapping("/author/{id}")
-    public ResponseEntity<Object> updateAuthor(@PathVariable Long id, @RequestBody @Valid UpdateAuthorDto updateAuthorDto) {
+    public ResponseEntity<Object> updateAuthor(@PathVariable UUID id, @RequestBody @Valid UpdateAuthorDto updateAuthorDto) {
         Optional<AuthorModel> searchedAuthor = authorService.getById(id);
         if(searchedAuthor.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Author not found.");
@@ -56,7 +58,7 @@ public class AuthorController {
     }
 
     @DeleteMapping("/author/{id}")
-    public ResponseEntity<Object> deleteAuthor(@PathVariable Long id) {
+    public ResponseEntity<Object> deleteAuthor(@PathVariable UUID id) {
         Optional<AuthorModel> searchedAuthor = authorService.getById(id);
         if(searchedAuthor.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Author not found.");
